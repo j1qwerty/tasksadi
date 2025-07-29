@@ -15,40 +15,56 @@ class TasksTableSeeder extends Seeder
     public function run(): void
     {
         $users = User::all();
+        $userEmails = ['user1@tasks.com', 'user2@tasks.com', 'user3@tasks.com'];
         
         Task::create([
-            'title' => 'Setup Development Environment',
-            'description' => 'Install and configure all necessary development tools and frameworks for the project.',
+            'title' => 'Task 1',
+            'description' => 'Description for task 1',
             'status' => 'completed',
-            'assigned_to' => $users->where('email', 'john@tasks.com')->first()->id,
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
         ]);
 
         Task::create([
-            'title' => 'Design Database Schema',
-            'description' => 'Create the database schema design including all tables, relationships, and constraints.',
+            'title' => 'Task 2',
+            'description' => 'Description for task 2',
             'status' => 'in_progress',
-            'assigned_to' => $users->where('email', 'jane@tasks.com')->first()->id,
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
         ]);
 
         Task::create([
-            'title' => 'Implement User Authentication',
-            'description' => 'Integrate Firebase authentication system with the Laravel backend.',
+            'title' => 'Task 3',
+            'description' => 'Description for task 3',
             'status' => 'pending',
-            'assigned_to' => $users->where('email', 'john@tasks.com')->first()->id,
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
         ]);
 
         Task::create([
-            'title' => 'Create Task Management UI',
-            'description' => 'Build responsive user interface for task creation, editing, and management.',
+            'title' => 'Task 4',
+            'description' => 'Description for task 4',
             'status' => 'pending',
-            'assigned_to' => $users->where('email', 'jane@tasks.com')->first()->id,
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
         ]);
 
         Task::create([
-            'title' => 'Write API Documentation',
-            'description' => 'Document all API endpoints with examples and usage instructions.',
+            'title' => 'Task 5',
+            'description' => 'Description for task 5',
             'status' => 'pending',
-            'assigned_to' => $users->where('email', 'john@tasks.com')->first()->id,
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
+        ]);
+
+        // Additional tasks
+        Task::create([
+            'title' => 'Task 6',
+            'description' => 'Description for task 6',
+            'status' => 'in_progress',
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
+        ]);
+
+        Task::create([
+            'title' => 'Task 7',
+            'description' => 'Description for task 7',
+            'status' => 'completed',
+            'assigned_to' => $users->where('email', $userEmails[array_rand($userEmails)])->first()->id,
         ]);
     }
 }

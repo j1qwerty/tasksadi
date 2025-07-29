@@ -21,15 +21,22 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'John Doe',
-            'email' => 'john@tasks.com',
+            'name' => 'user 1',
+            'email' => 'user1@tasks.com',
             'password' => bcrypt('password123'),
             'role' => 'user',
         ]);
 
         User::create([
-            'name' => 'Jane Smith',
-            'email' => 'jane@tasks.com',
+            'name' => 'user 2',
+            'email' => 'user2@tasks.com',
+            'password' => bcrypt('password123'),
+            'role' => 'user',
+        ]);
+
+         User::create([
+            'name' => 'user 3',
+            'email' => 'user3@tasks.com',
             'password' => bcrypt('password123'),
             'role' => 'user',
         ]);

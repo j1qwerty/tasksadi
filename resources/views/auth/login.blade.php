@@ -31,7 +31,9 @@
                     <small class="text-muted">
                         Use these test accounts:<br>
                         <strong>Admin:</strong> admin@tasks.com / password123<br>
-                        <strong>User:</strong> john@tasks.com / password123
+                        <strong>User:</strong> user1@tasks.com / password123<br>
+                        <strong>User:</strong> user2@tasks.com / password123<br>
+                        <strong>User:</strong> user3@tasks.com / password123
                     </small>
                 </div>
                 
