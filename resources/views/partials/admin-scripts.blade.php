@@ -81,6 +81,11 @@ $(document).ready(function() {
                         <button class="btn btn-sm btn-outline-primary" onclick="toggleUserRole(${user.id}, '${user.role}')">
                             ${user.role === 'admin' ? 'Make User' : 'Make Admin'}
                         </button>
+                        ${!user.firebase_uid ? `
+                            <button class="btn btn-sm btn-outline-success ms-1" onclick="connectToFirebase(${user.id}, '${user.email}')">
+                                <i class="fas fa-link"></i> Connect Firebase
+                            </button>
+                        ` : ''}
                     </td>
                 </tr>
             `;
@@ -249,6 +254,52 @@ $(document).ready(function() {
                 }
             });
         }
+    };
+    
+    // Connect user to Firebase
+    window.connectToFirebase = function(userId, userEmail) {
+        if (!window.firebaseAuth) {
+            alert('Firebase is not initialized');
+            return;
+        }
+        
+        const password = prompt('Enter a password for this Firebase account (min 6 characters):');
+        if (!password || password.length < 6) {
+            alert('Password must be at least 6 characters long');
+            return;
+        }
+        
+        // Import Firebase auth functions
+        import("https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js").then((auth) => {
+            // Create Firebase account
+            auth.createUserWithEmailAndPassword(window.firebaseAuth, userEmail, password)
+                .then((userCredential) => {
+                    const firebaseUser = userCredential.user;
+                    
+                    // Connect to Laravel
+                    $.ajax({
+                        url: '/api/auth/connect-firebase',
+                        method: 'POST',
+                        data: {
+                            user_id: userId,
+                            firebase_uid: firebaseUser.uid
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                alert('User successfully connected to Firebase!');
+                                loadUsers(); // Refresh users table
+                            }
+                        },
+                        error: function(xhr) {
+                            const response = xhr.responseJSON;
+                            alert('Failed to connect user: ' + (response.message || 'Unknown error'));
+                        }
+                    });
+                })
+                .catch((error) => {
+                    alert('Firebase account creation failed: ' + error.message);
+                });
+        });
     };
 });
 </script>

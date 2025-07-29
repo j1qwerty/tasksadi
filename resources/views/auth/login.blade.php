@@ -34,6 +34,13 @@
                         <strong>User:</strong> john@tasks.com / password123
                     </small>
                 </div>
+                
+                <div class="text-center mt-2">
+                    <small class="text-muted">
+                        Don't have an account? 
+                        <a href="/register" class="text-decoration-none">Register here</a>
+                    </small>
+                </div>
             </div>
         </div>
     </div>

@@ -12,12 +12,15 @@ Route::get('/', function () {
 // Authentication routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Firebase authentication
 Route::post('/api/auth/firebase-login', [AuthController::class, 'loginWithFirebase']);
+Route::post('/api/auth/firebase-register', [AuthController::class, 'registerWithFirebase']);
+Route::post('/api/auth/connect-firebase', [AuthController::class, 'connectUserToFirebase'])->middleware('auth');
 
 // Dashboard routes
 Route::middleware('auth')->group(function () {
